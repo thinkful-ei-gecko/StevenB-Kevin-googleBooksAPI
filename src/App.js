@@ -21,7 +21,7 @@ export default class App extends Component {
   handleSearchTerm= (userSearchTerm) => {
     this.setState({
       searchTerm: userSearchTerm
-    }, this.componentDidMount())
+    }, this.componentDidMount)
   }
 
   composeQuery(searchTerm) {
