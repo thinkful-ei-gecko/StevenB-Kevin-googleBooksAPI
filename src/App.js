@@ -19,7 +19,9 @@ export default class App extends Component {
   }
 
   handleSearchTerm= (userSearchTerm) => {
-    console.log(userSearchTerm);
+    this.setState({
+      searchTerm: userSearchTerm
+    }, this.componentDidMount())
   }
 
   composeQuery(searchTerm) {
@@ -56,6 +58,7 @@ export default class App extends Component {
   
   render() {
     console.log('this.state.books', this.state.books)
+    console.log(this.state.searchTerm)
     return (
       <main className='App'>
         <Header
