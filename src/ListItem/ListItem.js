@@ -5,7 +5,9 @@ export default class ListItem extends Component {
   render() {
     const theBook = this.props.volumeInfo;
     const title = theBook.title;
-    const authors = theBook.authors.length > 1 ? theBook.authors.map(author => author + ', ') : theBook.authors[0];
+    const authors = theBook.authors ?
+    (theBook.authors.length > 1 ? theBook.authors.map(author => author + ', ') : theBook.authors[0]) :
+    'No Authors';
     const retailPrice = this.props.saleInfo.retailPrice;
     const price = retailPrice ? retailPrice.amount : 'NOT FOR SALE';
     const description = theBook.description;
