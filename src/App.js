@@ -62,9 +62,6 @@ export default class App extends Component {
   }
   
   render() {
-    console.log('this.state.books', this.state.books)
-    console.log(this.state.searchTerm)
-    console.log(this.state.filterBookType)
     return (
       <main className='App'>
         <Header
