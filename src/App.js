@@ -1,6 +1,7 @@
 import React from 'react';
-import Header from './Header';
-import List from './List';
+import Header from './Header/Header';
+import List from './List/List';
+import './App.css';
 
 /* API Key: AIzaSyDDWElUEuq7wjg6crMFUYzphoMMB0ZEIlQ */
 // API documentation
