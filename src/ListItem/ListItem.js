@@ -11,7 +11,7 @@ export default class ListItem extends Component {
     const retailPrice = this.props.saleInfo.retailPrice;
     const price = retailPrice ? retailPrice.amount : 'NOT FOR SALE';
     const description = theBook.description;
-    const thumbnail = theBook.imageLinks.thumbnail;
+    const thumbnail = theBook.imageLinks ? theBook.imageLinks.thumbnail : '';
 
     return (
       <li className="ListItem">
