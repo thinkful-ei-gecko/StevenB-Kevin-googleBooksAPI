@@ -14,8 +14,14 @@ export default class App extends Component {
     this.state = {
        books: [],
        searchTerm: 'harry potter',
-       filterBookType: null,
+       filterBookType: false,
     }
+  }
+
+  handleFIlterBooks = (filterBoolean) => {
+    this.setState({
+      filterBookType: filterBoolean
+    }, this.componentDidMount)
   }
 
   handleSearchTerm= (userSearchTerm) => {
@@ -59,11 +65,13 @@ export default class App extends Component {
   render() {
     console.log('this.state.books', this.state.books)
     console.log(this.state.searchTerm)
+    console.log(this.state.filterBookType)
     return (
       <main className='App'>
         <Header
           handleSearchTerm={this.handleSearchTerm}
-          filterBookType={this.state.filterBookType}/>
+          filterBookType={this.handleFIlterBooks}
+          />
         <List books={this.state.books} />
       </main>
     )
