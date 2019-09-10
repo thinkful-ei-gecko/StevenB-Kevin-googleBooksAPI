@@ -5,9 +5,9 @@ export default class FilterBar extends Component {
   render() {
     return (
       <div>
-        <select onClick={(e) => this.props.filterBookType(e.target.value)}>
+        <select onChange={(e) => this.props.filterBookType(e.target.value)}>
           <option value={false}>Filter...</option>
-          <option value={true}>FREE</option>
+          <option value={true}>FREE EBOOK</option>
         </select>
       </div>
     )

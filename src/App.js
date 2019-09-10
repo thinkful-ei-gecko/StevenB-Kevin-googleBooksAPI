@@ -13,21 +13,22 @@ export default class App extends Component {
   
     this.state = {
        books: [],
-       searchTerm: 'harry potter',
-       filterBookType: false,
+       searchTerm: [],
+       filterBookType: false
     }
   }
 
   handleFIlterBooks = (filterBoolean) => {
     this.setState({
       filterBookType: filterBoolean
-    }, this.componentDidMount)
+    }, this.handleSearchTerm)
   }
 
   handleSearchTerm= (userSearchTerm) => {
+    userSearchTerm = userSearchTerm ? userSearchTerm : this.state.searchTerm;
     this.setState({
       searchTerm: userSearchTerm
-    }, this.componentDidMount)
+    }, this.getBookList) 
   }
 
   composeQuery(searchTerm) {
@@ -35,10 +36,14 @@ export default class App extends Component {
   }
 
   composeURL(BASE_URL) {
-    return `${BASE_URL}?q=${this.composeQuery(this.state.searchTerm)}&key=AIzaSyDDWElUEuq7wjg6crMFUYzphoMMB0ZEIlQ`
+    if (this.state.filterBookType) {
+      return `${BASE_URL}?q=${this.composeQuery(this.state.searchTerm)}&filter=free-ebooks&key=AIzaSyDDWElUEuq7wjg6crMFUYzphoMMB0ZEIlQ`
+    } else {
+      return `${BASE_URL}?q=${this.composeQuery(this.state.searchTerm)}&key=AIzaSyDDWElUEuq7wjg6crMFUYzphoMMB0ZEIlQ`
+    }
   }
 
-  componentDidMount() {
+  getBookList() {
     const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
     const options = {
       method: 'GET',
@@ -49,9 +54,8 @@ export default class App extends Component {
         if (!response.ok) {
           throw new Error('error');
         }
-        return response;
+        return response.json();
       })
-      .then(response => response.json())
       .then(data => {
         this.setState({
           books: data.items,
