@@ -7,8 +7,11 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        <SearchBar />
-        <FilterBar />
+        <h1>Find a book!</h1>
+        <div>
+          <SearchBar handleSearchTerm={this.props.handleSearchTerm}/>
+          <FilterBar />
+        </div>
       </div>
     )
   }

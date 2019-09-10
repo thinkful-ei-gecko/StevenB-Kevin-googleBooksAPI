@@ -18,6 +18,10 @@ export default class App extends Component {
     }
   }
 
+  handleSearchTerm= (userSearchTerm) => {
+    console.log(userSearchTerm);
+  }
+
   composeQuery(searchTerm) {
     return searchTerm.split(' ').join('+');
   }
@@ -46,7 +50,7 @@ export default class App extends Component {
         })
       })
       .catch(error => {
-        console.log(error);
+        alert(error);
       })
   }
   
@@ -55,7 +59,7 @@ export default class App extends Component {
     return (
       <main className='App'>
         <Header
-          searchTerm={this.state.searchTerm}
+          handleSearchTerm={this.handleSearchTerm}
           filterBookType={this.state.filterBookType}/>
         <List books={this.state.books} />
       </main>
