@@ -25,7 +25,6 @@ export default class App extends Component {
   }
 
   handleSearchTerm= (userSearchTerm) => {
-    userSearchTerm = userSearchTerm ? userSearchTerm : this.state.searchTerm;
     this.setState({
       searchTerm: userSearchTerm
     }, this.getBookList) 
