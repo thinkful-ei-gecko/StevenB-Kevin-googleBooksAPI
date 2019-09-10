@@ -13,15 +13,14 @@ export default class App extends Component {
   
     this.state = {
        books: [],
-       searchTerm: [],
-       filterBookType: false
+       searchTerm: '',
+       filterBookType: 'paid-ebooks'
     }
   }
 
-  handleFIlterBooks = (filterBoolean) => {
-    console.log(typeof filterBoolean);
+  handleFIlterBooks = (filterBy) => {
     this.setState({
-      filterBookType: filterBoolean
+      filterBookType: filterBy
     }, this.getBookList)
   }
 
@@ -37,11 +36,7 @@ export default class App extends Component {
   }
 
   composeURL(BASE_URL) {
-    if (this.state.filterBookType === 'true') {
-      return `${BASE_URL}?q=${this.composeQuery(this.state.searchTerm)}&filter=free-ebooks&key=AIzaSyDDWElUEuq7wjg6crMFUYzphoMMB0ZEIlQ`
-    } else {
-      return `${BASE_URL}?q=${this.composeQuery(this.state.searchTerm)}&key=AIzaSyDDWElUEuq7wjg6crMFUYzphoMMB0ZEIlQ`
-    }
+    return `${BASE_URL}?q=${this.composeQuery(this.state.searchTerm)}&filter=${this.state.filterBookType}&key=AIzaSyDDWElUEuq7wjg6crMFUYzphoMMB0ZEIlQ`;
   }
 
   getBookList() {
